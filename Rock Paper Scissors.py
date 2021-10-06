@@ -3,7 +3,7 @@ choices = ["Rock", "Paper", "Scissors"]
 computer = random.choice(choices)
 player = False
 cpu_score = 0
-
+player_score = 0
 while True:
     player = input("Rock, Paper or  Scissors?").capitalize()
     ## Conditions of Rock,Paper and Scissors
@@ -32,6 +32,6 @@ while True:
             player_score+=1
     elif player=='End':
         print("Final Scores:")
-        print(f"CPU:{cp_score}")
+        print(f"CPU:{cpu_score}")
         print(f"Plaer:{player_score}")
         break
