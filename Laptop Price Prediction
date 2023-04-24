@@ -66,6 +66,24 @@ plt.show()
 sns.barplot(x=df['TypeName'],y=df['Price'])
 plt.xticks(rotation='vertical')
 plt.show()
+
+step1 = ColumnTransformer(transformers=[
+    ('col_tnf',OneHotEncoder(sparse=False,drop='first'),[0,1,7,10,11])
+],remainder='passthrough')
+
+step2 = Ridge(alpha=10)
+
+pipe = Pipeline([
+    ('step1',step1),
+    ('step2',step2)
+])
+
+pipe.fit(X_train,y_train)
+
+y_pred = pipe.predict(X_test)
+
+print('R2 score',r2_score(y_test,y_pred))
+print('MAE',mean_absolute_error(y_test,y_pred))
 # Workstation type laptops are most expensive
 # laptop price also depends upon on type of laptop
 
